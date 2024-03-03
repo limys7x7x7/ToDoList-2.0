@@ -1,0 +1,101 @@
+body {
+  margin: auto;
+}
+.main {
+  width: 90%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 2px solid black;
+  flex-direction: column;
+}
+.main__form {
+  text-align: center;
+}
+.form {
+  margin: 40px auto;
+}
+.input {
+  width: 300px;
+  height: 30px;
+}
+.form__input {
+}
+.button {
+  width: 90px;
+  height: 36px;
+}
+.form__button {
+}
+.list {
+  margin: 40px auto;
+}
+
+.task {
+  /* width: 100%; */
+  display: flex;
+  
+  
+  align-items: center;
+}
+
+.list__li {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.task__text {
+  display: inline-flex;
+  position: relative;
+}
+.list__btns {
+  position: relative;
+  display: inline-flex
+}
+.list__buttonEdit {
+}
+.list__buttonDelete {
+}
+
+.modal {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;  
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  
+}
+.modalForm {
+  max-width: 30%;
+  max-height: 15%;
+  text-align: center;
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: blue;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background: rgb(255, 255, 255);
+}
+.modal__input {
+
+
+}
+.modal__button {
+
+}
