@@ -68,7 +68,7 @@ function EditTodo(e) {
   let index = todos.findIndex((item) => id === item.id)
   // TODO: это не нужно
   let textInput = todos[index].text
-  // TODO: убрать динамическую генерацию модалки
+  // TODO: убрать динамическую генерацию модалки и сделать возможность закрывать модалку
   let modal = `<div class="modal">
   <form class="modalForm">
     <input name="input" type="text" class="input modal__input" value="${textInput}" />
