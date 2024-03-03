@@ -2,6 +2,7 @@ const form = document.querySelector('.form')
 const list = document.querySelector('.list')
 
 // Редактируемая задача
+// TODO: должна называться currentIdEditTask
 let currentIdEditTask = null
 
 // Массив обьектов списка задач с id и текстом. Добавляется каждая задача в виде обьекта.
@@ -11,6 +12,7 @@ let todos = []
 form.addEventListener('submit', addTodo)
 
 // Событие на кнопки Редактировать и Удалить
+// TODO: вынести логику из addEventListener в отдельную ф-ю
 list.addEventListener('click', (e) => {
   const btnElements = e.target.closest('.list__btns')
   if (!btnElements) return
@@ -25,11 +27,14 @@ function addTodo(e) {
   e.preventDefault()
   const id = Date.now()
   const text = e.target[0].value
+  // TODO: можно выводить alert
   if (!text) return
   todos.push({
     id,
     text,
   })
+  // TODO: заменить input на button
+  // TODO: генерацию разметки для item можно вынести в отдельную ф-ю и также использовать ее потом в renderTasks
   const item = `<div class="task"id="${id}">
     <li>${text}
     <div class="list__btns">
@@ -46,15 +51,24 @@ function deleteTodo(e) {
   currentIdEditTask = e.target.closest('.task')
   let id = Number(currentIdEditTask.id)
   todos = todos.filter((item) => item.id !== id)
+  document.getElementById(id).remove()
+  /* TODO: здесь не нужно вызывать renderTasks 
+    нужно удалять конкретную запись по id
+  */
   localStorageSet()
   renderTasks()
 }
+
+// TODO: название с маленькой буквы
 function EditTodo(e) {
   e.preventDefault()
   currentIdEditTask = e.target.closest('.task')
   let id = Number(currentIdEditTask.id)
+  // TODO: вместо findIndex можно использовать find. Переменнную index переименовать в item
   let index = todos.findIndex((item) => id === item.id)
+  // TODO: это не нужно
   let textInput = todos[index].text
+  // TODO: убрать динамическую генерацию модалки
   let modal = `<div class="modal">
   <form class="modalForm">
     <input name="input" type="text" class="input modal__input" value="${textInput}" />
@@ -63,13 +77,14 @@ function EditTodo(e) {
   </div>`
   document.body.innerHTML += modal
   const modalForm = document.querySelector('.modalForm')
-  modalForm.addEventListener('submit', function () {
+  // TODO: вынести modalForm.addEventListener из EditTodo
+  modalForm.addEventListener('submit', function (e) {
+    e.preventDefault()
     todos[index].text = modalForm.input.value
     document.querySelector('.modal').style.display = 'none'
     localStorageSet()
     currentIdEditTask = null
   })
-
 }
 // Функция записывает в localStorage данные
 function localStorageSet() {
@@ -81,6 +96,7 @@ function localStorageGet() {
   if (todosArray) {
     todos = JSON.parse(todosArray)
   }
+  // TODO: здесь не нужно вызывать renderTasks
   renderTasks()
 }
 function renderTasks() {
@@ -95,7 +111,11 @@ function renderTasks() {
     <input type="button" class="button list__buttonDelete"value="Удалить">
     </div>
     </li>`
+    // TODO: заменить insertAdjacentHTML на innerHtml
     document.querySelector('.list').insertAdjacentHTML('beforeEnd', item)
   })
 }
+
+// localStorageGet
+// renderTasks
 localStorageGet()
